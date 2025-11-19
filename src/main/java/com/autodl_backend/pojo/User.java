@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.autodl_backend.demos.web;
+package com.autodl_backend.pojo;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
