@@ -3,17 +3,21 @@ package com.autodl_backend.pojo;
 import com.autodl_backend.pojo.enums.DeploymentStatus;
 import com.autodl_backend.pojo.enums.DeploymentType;
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @TableName("deployments")
 public class Deployments {
 
     @TableId(type = IdType.AUTO)
-    private Integer id;
+    private Integer id; //部署id
 
     @TableField("uid")
     private Integer uid; // 归属用户ID

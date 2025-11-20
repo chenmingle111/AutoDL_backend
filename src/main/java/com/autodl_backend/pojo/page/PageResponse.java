@@ -1,4 +1,4 @@
-package com.autodl_backend.page;
+package com.autodl_backend.pojo.page;
 
 
 import lombok.AllArgsConstructor;

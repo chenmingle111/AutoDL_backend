@@ -1,9 +1,11 @@
 package com.autodl_backend.pojo;
 
+import com.autodl_backend.util.ListToStringTypeHandler;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @TableName("container_templates")
@@ -17,6 +19,9 @@ public class ContainerTemplates {
 
     @TableField("cuda_v")
     private Integer cudaV; // CUDA版本
+
+    @TableField(value = "gpu_name_set", typeHandler = ListToStringTypeHandler.class)
+    private List<String> gpuNameSet; // GPU型号列表
 
     @TableField("gpu_num")
     private Integer gpuNum; // GPU数量

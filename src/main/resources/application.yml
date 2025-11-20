@@ -1,6 +1,9 @@
 server:
   port: 8088
 spring:
+  jackson:
+      # 配置全局字段命名策略：后端驼峰属性（如 imageName）→ 响应 JSON 下划线字段（如 image_name）
+      property-naming-strategy: SNAKE_CASE
   application:
     name:
   datasource:
@@ -18,6 +21,7 @@ spring:
         min-idle: 1
         time-between-eviction-runs: 10s
     password: 123456
+
 mybatis-plus:
   configuration:
     # 1. 枚举全局处理器（映射 IEnum 接口的 getValue() 或 ordinal()）

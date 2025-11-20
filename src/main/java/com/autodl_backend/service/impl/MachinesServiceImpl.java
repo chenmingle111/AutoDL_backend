@@ -6,9 +6,15 @@ import com.autodl_backend.service.MachinesService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 /**
  * Machines表的服务层实现类
  */
 @Service
 public class MachinesServiceImpl extends ServiceImpl<MachinesMapper, Machines> implements MachinesService {
+    @Override
+    public HashMap<String, Machines> getGpuStock() {
+        return null;
+    }
 }

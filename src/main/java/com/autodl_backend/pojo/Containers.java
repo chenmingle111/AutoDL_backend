@@ -2,6 +2,7 @@ package com.autodl_backend.pojo;
 
 import com.autodl_backend.pojo.enums.ContainerStatus;
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -13,12 +14,15 @@ public class Containers {
     @TableId(type = IdType.AUTO)
     private Integer id;
 
+    @JsonProperty("uuid")
     @TableField("container_uuid")
     private String containerUuid; // 容器唯一标识
 
+    @JsonProperty("deployment_uuid")
     @TableField("deployment_uuid")
     private String deploymentUuid; // 关联部署UUID
 
+    @JsonProperty("machine_id")
     @TableField("machine_uuid")
     private String machineUuid; // 关联主机UUID
 
@@ -43,9 +47,10 @@ public class Containers {
     @TableField("price")
     private Integer price; // 基准价格
 
-    @TableField("ssh_port")
-    private Integer sshPort; // SSH端口
+    @TableField("ssh_command")
+    private String sshCommand; // SSH登录指令
 
+    @JsonProperty("root_password")
     @TableField("ssh_password")
     private String sshPassword; // SSH密码
 
@@ -53,10 +58,10 @@ public class Containers {
     private String serviceUrl; // 自定义服务地址
 
     @TableField("proxy_host")
-    private String proxyHost; // 废弃字段
+    private String proxyHost; // 自定义服务HOST地址
 
     @TableField("custom_port")
-    private Integer customPort; // 废弃字段
+    private Integer customPort; // 自定义服务端口号
 
     @TableField("started_at")
     private LocalDateTime startedAt; // 启动时间

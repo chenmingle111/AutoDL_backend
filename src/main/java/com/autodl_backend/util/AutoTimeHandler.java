@@ -1,4 +1,4 @@
-package com.autodl_backend.conf;
+package com.autodl_backend.util;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

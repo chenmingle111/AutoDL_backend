@@ -1,4 +1,4 @@
-package com.autodl_backend.response;
+package com.autodl_backend.pojo.response;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
