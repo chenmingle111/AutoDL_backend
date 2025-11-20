@@ -1,0 +1,12 @@
+mybatis-plus:
+  configuration:
+    # 1. 枚举全局处理器（映射 IEnum 接口的 getValue() 或 ordinal()）
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+    # 2. 未知枚举值时不报错（返回 null，避免查询失败，3.5.0+ 支持）
+    enum-automap-unknown-value: true
+    # 优化：开启驼峰命名自动转换（数据库下划线 → Java 驼峰，如 user_name → userName）
+    map-underscore-to-camel-case: true
+    # 优化：打印 SQL（开发环境方便调试）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 3. 扫描自定义类型处理器
+  type-handlers-package: com.autodl_backend.conf
