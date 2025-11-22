@@ -1,25 +1,23 @@
 package com.autodl_backend.service;
 
 import com.autodl_backend.integration.DTO.DeploymentDTO;
-import com.autodl_backend.pojo.Deployments;
+import com.autodl_backend.pojo.DeploymentEntity;
 import com.autodl_backend.pojo.page.PageRequest;
 import com.autodl_backend.pojo.page.PageResponse;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * Deployments表的服务层接口
+ * Deployment Service Interface
  */
-public interface DeploymentsService extends IService<Deployments> {
+public interface DeploymentService extends IService<DeploymentEntity> {
 
     /**
-     *创建部署
+     * Create deployment with AutoDL integration
      */
-    String createDeployment(DeploymentDTO dto);
+    String createDeploymentWithAutoDL(DeploymentDTO dto);
 
     /**
-     * 获取部署列表
+     * List deployments
      */
     PageResponse<DeploymentDTO> listDeployments(PageRequest pageRequest);
-
-
 }

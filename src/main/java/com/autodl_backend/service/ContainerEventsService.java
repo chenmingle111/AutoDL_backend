@@ -1,6 +1,6 @@
 package com.autodl_backend.service;
 
-import com.autodl_backend.DTO.ContainerEventDTO;
+import com.autodl_backend.integration.DTO.ContainerEventDTO;
 import com.autodl_backend.pojo.ContainerEvents;
 import com.autodl_backend.pojo.page.PageResponse;
 import com.baomidou.mybatisplus.extension.service.IService;

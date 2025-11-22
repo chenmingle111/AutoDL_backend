@@ -1,6 +1,6 @@
 package com.autodl_backend.service.impl;
 
-import com.autodl_backend.DTO.ContainerDTO;
+import com.autodl_backend.integration.DTO.ContainerDTO;
 import com.autodl_backend.mapper.ContainersMapper;
 import com.autodl_backend.pojo.Containers;
 import com.autodl_backend.pojo.page.PageResponse;

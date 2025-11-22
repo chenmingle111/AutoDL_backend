@@ -1,4 +1,4 @@
-package com.autodl_backend.DTO;
+package com.autodl_backend.integration.DTO;
 
 import com.autodl_backend.pojo.enums.DeploymentStatus;
 import com.sun.istack.NotNull;

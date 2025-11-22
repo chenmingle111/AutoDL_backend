@@ -2,6 +2,7 @@ package com.autodl_backend.pojo;
 
 import com.autodl_backend.pojo.enums.ImageStatus;
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -17,9 +18,11 @@ public class Images {
     private Integer uid; // 归属用户ID
 
     @TableField("image_uuid")
+    @JsonProperty("image_uuid")
     private String imageUuid; // 镜像唯一标识
 
     @TableField("image_name")
+    @JsonProperty("image_name")
     private String imageName; // 镜像名称
 
     @TableField("status")

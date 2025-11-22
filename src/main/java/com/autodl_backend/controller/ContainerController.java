@@ -1,7 +1,7 @@
 package com.autodl_backend.controller;
 
-import com.autodl_backend.DTO.ContainerDTO;
-import com.autodl_backend.DTO.ContainerStopDTO;
+import com.autodl_backend.integration.DTO.ContainerDTO;
+import com.autodl_backend.integration.DTO.ContainerStopDTO;
 import com.autodl_backend.pojo.Containers;
 import com.autodl_backend.pojo.page.PageResponse;
 import com.autodl_backend.pojo.response.ApiResponse;

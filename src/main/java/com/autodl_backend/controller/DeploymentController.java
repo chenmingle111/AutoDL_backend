@@ -1,8 +1,8 @@
 package com.autodl_backend.controller;
 
-import com.autodl_backend.DTO.DeploymentDTO;
-import com.autodl_backend.DTO.StopDeploymentDTO;
-import com.autodl_backend.DTO.UpdateReplicaNumDTO;
+import com.autodl_backend.integration.DTO.DeploymentDTO;
+import com.autodl_backend.integration.DTO.StopDeploymentDTO;
+import com.autodl_backend.integration.DTO.UpdateReplicaNumDTO;
 import com.autodl_backend.pojo.ContainerTemplates;
 import com.autodl_backend.pojo.Deployments;
 import com.autodl_backend.pojo.SchedulingBlacklist;
