@@ -6,9 +6,9 @@ import lombok.Data;
  * Response DTO for AutoDL API.
  */
 @Data
-public class AutoDLResp {
-    private Integer code;
+public class AutoDLResp<T> {
+    private String code;
     private String msg;
-    private Object data;
+    private T data;
     // Add other necessary fields here
 }
