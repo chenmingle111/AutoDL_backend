@@ -7,6 +7,8 @@ import com.autodl_backend.autodl.dto.container.ContainerListData;
 import com.autodl_backend.autodl.dto.container.ContainerListReq;
 import com.autodl_backend.autodl.dto.container.ContainerStopReq;
 import com.autodl_backend.autodl.dto.container.ContainerEventData;
+import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
+import com.autodl_backend.autodl.dto.machines.GpuStockData;
 import com.autodl_backend.autodl.exception.AutoDLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;

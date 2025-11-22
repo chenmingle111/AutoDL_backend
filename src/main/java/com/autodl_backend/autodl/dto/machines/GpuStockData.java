@@ -1,4 +1,4 @@
-package com.autodl_backend.autodl.dto;
+package com.autodl_backend.autodl.dto.machines;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

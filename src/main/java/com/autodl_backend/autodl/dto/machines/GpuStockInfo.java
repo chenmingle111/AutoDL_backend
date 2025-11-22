@@ -1,4 +1,4 @@
-package com.autodl_backend.autodl.dto;
+package com.autodl_backend.autodl.dto.machines;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

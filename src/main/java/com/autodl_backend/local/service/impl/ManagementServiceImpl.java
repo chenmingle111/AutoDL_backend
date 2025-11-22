@@ -1,8 +1,8 @@
 package com.autodl_backend.local.service.impl;
 
 import com.autodl_backend.autodl.client.AutoDLClient;
-import com.autodl_backend.autodl.dto.BlacklistReq;
-import com.autodl_backend.autodl.dto.GpuStockData;
+import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
+import com.autodl_backend.autodl.dto.machines.GpuStockData;
 import com.autodl_backend.local.service.ManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
