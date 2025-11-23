@@ -25,18 +25,6 @@ public class ImagesServiceImpl extends ServiceImpl<ImagesMapper, Images> impleme
         req.setPageSize(pageSize);
         req.setOffset(0); // Default offset
 
-        com.autodl_backend.autodl.dto.AutoDLResp<com.autodl_backend.autodl.dto.image.PrivateImageListData> resp = autoDLClient
-                .post(
-                        "/dev/image/private/list",
-                        req,
-                        new org.springframework.core.ParameterizedTypeReference<com.autodl_backend.autodl.dto.AutoDLResp<com.autodl_backend.autodl.dto.image.PrivateImageListData>>() {
-                        });
-
-        if (resp == null || !"Success".equals(resp.getCode())) {
-            throw new RuntimeException(
-                    "Failed to get private images: " + (resp != null ? resp.getMsg() : "Unknown error"));
-        }
-
-        return resp.getData();
+        return autoDLClient.getPrivateImageList(req);
     }
 }
