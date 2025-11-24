@@ -1,11 +1,47 @@
+# 服务器配置
 server:
   port: 8088
+
+# 全局配置 - 集中管理系统配置
+autodl:
+  # 系统基本配置
+  system-name: AutoDL Backend
+  version: 1.0.0
+  
+  # API相关配置
+  api:
+    base-url: ""
+    api-version: v1
+    connect-timeout: 5000
+    read-timeout: 10000
+    max-retries: 3
+    api-key: ""
+  
+  # AutoDL特定配置
+  autodl:
+    url: https://www.autodl.com/api/v1
+    token: # 请在此处配置您的AutoDL API token
+  
+  # 安全配置
+  security:
+    jwt-expire-minutes: 1440
+    jwt-secret: # 请在此处配置您的JWT密钥
+    cors-enabled: true
+    allowed-origins: "*"
+  
+  # 功能配置
+  feature:
+    container-management-enabled: true
+    auto-deploy-enabled: true
+    image-management-enabled: true
+
+# Spring相关配置
 spring:
   jackson:
       # 配置全局字段命名策略：后端驼峰属性（如 imageName）→ 响应 JSON 下划线字段（如 image_name）
       property-naming-strategy: SNAKE_CASE
   application:
-    name:
+    name: AutoDL_backend
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/auto_dl_management?useSSL=false&serverTimezone=UTC
@@ -22,6 +58,7 @@ spring:
         time-between-eviction-runs: 10s
     password: 123456
 
+# MyBatis-Plus配置
 mybatis-plus:
   configuration:
     # 1. 枚举全局处理器（映射 IEnum 接口的 getValue() 或 ordinal()）

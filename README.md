@@ -31,6 +31,7 @@ AutoDL
 └── Application
 
 #优化
-1.使用webSocket加syncUpdate实现实时更新
-2.分开不同的拦截器，设置执行优先级，
+1.实现syncTask代码，使用webSocket加syncUpdate实现实时更新
+2.分开不同的拦截器，设置执行优先级
+
 
