@@ -10,14 +10,11 @@ import com.autodl_backend.local.mapper.ImagesMapper;
 import com.autodl_backend.local.pojo.entity.Images;
 import com.autodl_backend.local.pojo.entity.Users;
 import com.autodl_backend.local.service.ImagesService;
-import com.autodl_backend.util.ImageValidationUtils;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.autodl_backend.local.service.validation.ImageValidationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 /**
  * Images表的服务层实现类
@@ -28,6 +25,9 @@ public class ImagesServiceImpl extends ServiceImpl<ImagesMapper, Images> impleme
 
     @Autowired
     private AutoDLClient autoDLClient;
+
+    @Autowired
+    private ImageValidationService validationService;
 
     @Override
     public PrivateImageListData getPrivateImages(int pageIndex, int pageSize) {
@@ -41,33 +41,18 @@ public class ImagesServiceImpl extends ServiceImpl<ImagesMapper, Images> impleme
 
     @Override
     public Images getImageByUuid(String imageUuid) throws ImageNotFoundException {
-        if (!StringUtils.hasText(imageUuid)) {
-            throw new ImageNotFoundException("镜像UUID不能为空");
-        }
-
-        QueryWrapper<Images> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("image_uuid", imageUuid)
-                   .eq("is_deleted", 0);
-
-        Images image = getOne(queryWrapper);
-        ImageValidationUtils.checkImageExists(image);
-
-        return image;
+        return validationService.validateImageExists(imageUuid);
     }
 
     @Override
-    public Images checkImagePermission(Users user, String imageUuid) 
+    public Images checkImagePermission(Users user, String imageUuid)
             throws ImageNotFoundException, ImagePermissionDeniedException {
-        Images image = getImageByUuid(imageUuid);
-        ImageValidationUtils.checkImagePermission(user, image);
-
-        return image;
+        return validationService.validateImagePermission(user, imageUuid);
     }
 
     @Override
-    public void checkImageStatus(String imageUuid) 
+    public void checkImageStatus(String imageUuid)
             throws ImageNotFoundException, ImagePullFailedException {
-        Images image = getImageByUuid(imageUuid);
-        ImageValidationUtils.checkImageStatus(image);
+        validationService.validateImageStatus(imageUuid);
     }
 }
