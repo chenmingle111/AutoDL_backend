@@ -1,5 +1,6 @@
 package com.autodl_backend.local.config;
 
+import com.autodl_backend.local.interceptor.AuthInterceptor;
 import com.autodl_backend.local.interceptor.GeneralInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -16,14 +17,22 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private GeneralInterceptor generalInterceptor;
 
-/**
- * 添加自定义的拦截器，并配置拦截规则
- */
+    @Autowired
+    private AuthInterceptor authInterceptor;
+
+    /**
+     * 添加自定义的拦截器，并配置拦截规则
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // 注册通用拦截器
-        registry.addInterceptor(generalInterceptor)  // 添加通用拦截器到注册器
+        // 注册认证拦截器，优先级高于通用拦截器
+        registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/**") // 拦截所有请求
-                .excludePathPatterns("/api/login", "/api/register"); // 排除登录注册等接口（根据实际情况调整）
+                .order(1); // 设置拦截器顺序，数字越小优先级越高
+
+        // 注册通用拦截器
+        registry.addInterceptor(generalInterceptor)
+                .addPathPatterns("/**") // 拦截所有请求
+                .order(2); // 设置拦截器顺序，数字越小优先级越高
     }
 }

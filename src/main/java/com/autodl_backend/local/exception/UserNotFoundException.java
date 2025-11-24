@@ -1,0 +1,20 @@
+package com.autodl_backend.local.exception;
+
+/**
+ * 用户不存在异常
+ * 当尝试操作不存在的用户时抛出此异常
+ */
+public class UserNotFoundException extends RuntimeException {
+
+    public UserNotFoundException(String message) {
+        super(message);
+    }
+
+    public UserNotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public UserNotFoundException(Integer userId) {
+        super("用户不存在: ID " + userId);
+    }
+}

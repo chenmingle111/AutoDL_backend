@@ -12,6 +12,8 @@ import com.autodl_backend.autodl.dto.deployment.CreateDeploymentData;
 import com.autodl_backend.autodl.dto.deployment.CreateDeploymentReq;
 import com.autodl_backend.autodl.dto.deployment.DeploymentListData;
 import com.autodl_backend.autodl.dto.deployment.DeploymentListReq;
+import com.autodl_backend.autodl.dto.image.PrivateImageListData;
+import com.autodl_backend.autodl.dto.image.PrivateImageListReq;
 import com.autodl_backend.autodl.dto.machines.GpuStockData;
 import com.autodl_backend.autodl.exception.AutoDLException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,8 @@ public class AutoDLClient {
 
     @Autowired
     private AutoDLProperties autoDLProperties;
+
+
 
     /**
      * 发送POST请求到AutoDL API的通用方法
@@ -100,6 +104,33 @@ public class AutoDLClient {
     }
 
     /**
+     * Generic GET method
+     */
+    public <T> AutoDLResp<T> get(String path, ParameterizedTypeReference<AutoDLResp<T>> typeReference) {
+        String url = autoDLProperties.getUrl() + path;
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", autoDLProperties.getToken());
+        HttpEntity<Object> entity = new HttpEntity<>(null, headers);
+
+        ResponseEntity<AutoDLResp<T>> response = restTemplate.exchange(url, HttpMethod.GET, entity, typeReference);
+        AutoDLResp<T> result = response.getBody();
+
+        // Check for null response
+        if (result == null) {
+            throw new AutoDLException("AutoDL API returned null response");
+        }
+
+        // Check for error code
+        if (!"Success".equals(result.getCode())) {
+            throw new AutoDLException(result.getCode(), result.getMsg());
+        }
+
+        return result;
+    }
+
+
+
+    /**
      * 创建实例的方法
      */
     public AutoDLResp<Object> createInstance(AutoDLCreateReq req) {
@@ -138,6 +169,7 @@ public class AutoDLClient {
         return resp.getData();
     }
 
+
     /**
      * Query container list
      */
@@ -161,8 +193,8 @@ public class AutoDLClient {
     /**
      * Set scheduling blacklist
      */
-    public Object setBlacklist(BlacklistReq req) {
-        AutoDLResp<Object> resp = post("/dev/deployment/blacklist", req,
+    public Object setBlacklist() {
+        AutoDLResp<Object> resp = get("/dev/deployment/blacklist",
                 new ParameterizedTypeReference<AutoDLResp<Object>>() {
                 });
         return resp.getData();
@@ -178,30 +210,6 @@ public class AutoDLClient {
         return resp.getData();
     }
 
-    /**
-     * Generic GET method
-     */
-    public <T> AutoDLResp<T> get(String path, ParameterizedTypeReference<AutoDLResp<T>> typeReference) {
-        String url = autoDLProperties.getUrl() + path;
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", autoDLProperties.getToken());
-        HttpEntity<Object> entity = new HttpEntity<>(null, headers);
-
-        ResponseEntity<AutoDLResp<T>> response = restTemplate.exchange(url, HttpMethod.GET, entity, typeReference);
-        AutoDLResp<T> result = response.getBody();
-
-        // Check for null response
-        if (result == null) {
-            throw new AutoDLException("AutoDL API returned null response");
-        }
-
-        // Check for error code
-        if (!"Success".equals(result.getCode())) {
-            throw new AutoDLException(result.getCode(), result.getMsg());
-        }
-
-        return result;
-    }
 
     /**
      * Create a new deployment
@@ -226,8 +234,8 @@ public class AutoDLClient {
     /**
      * Get private image list
      */
-    public com.autodl_backend.autodl.dto.image.PrivateImageListData getPrivateImageList(
-            com.autodl_backend.autodl.dto.image.PrivateImageListReq req) {
+    public PrivateImageListData getPrivateImageList(
+            PrivateImageListReq req) {
         AutoDLResp<com.autodl_backend.autodl.dto.image.PrivateImageListData> resp = post("/dev/image/private/list", req,
                 new ParameterizedTypeReference<AutoDLResp<com.autodl_backend.autodl.dto.image.PrivateImageListData>>() {
                 });

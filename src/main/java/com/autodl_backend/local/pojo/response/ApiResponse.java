@@ -45,6 +45,13 @@ public class ApiResponse<T> {
     }
 
     /**
+     * 禁止访问
+     */
+    public static <T> ApiResponse<T> forbidden(String msg) {
+        return error(ResponseCode.PERMISSION_DENIED, msg);
+    }
+
+    /**
      * 资源未找到
      */
     public static <T> ApiResponse<T> notFound(String msg) {
