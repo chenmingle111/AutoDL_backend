@@ -37,27 +37,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**") // 拦截所有请求
                 .order(2); // 设置拦截器顺序，数字越小优先级越高
     }
-    
-    /**
-     * 配置CORS（跨域资源共享）
-     * 使用GlobalConfig中的安全配置来控制CORS行为
-     */
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        // 从全局配置中获取CORS配置
-        boolean corsEnabled = ConfigUtils.getSecurityConfig() != null ? 
-                              ConfigUtils.getSecurityConfig().isCorsEnabled() : true;
-        
-        if (corsEnabled) {
-            String allowedOrigins = ConfigUtils.getSecurityConfig() != null ? 
-                                   ConfigUtils.getSecurityConfig().getAllowedOrigins() : "*";
-            
-            registry.addMapping("/**")
-                    .allowedOrigins(allowedOrigins.split(","))
-                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                    .allowedHeaders("*")
-                    .allowCredentials(true)
-                    .maxAge(3600);
-        }
-    }
+
 }

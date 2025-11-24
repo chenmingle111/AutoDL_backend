@@ -20,7 +20,7 @@ autodl:
   # AutoDL特定配置
   autodl:
     url: https://www.autodl.com/api/v1
-    token: # 请在此处配置您的AutoDL API token
+    token: # 请在此处配置您的AutoDL API Token
   
   # 安全配置
   security:
@@ -37,6 +37,9 @@ autodl:
 
 # Spring相关配置
 spring:
+  spring:
+    jpa:
+      open-in-view: false
   jackson:
       # 配置全局字段命名策略：后端驼峰属性（如 imageName）→ 响应 JSON 下划线字段（如 image_name）
       property-naming-strategy: SNAKE_CASE
@@ -45,7 +48,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/auto_dl_management?useSSL=false&serverTimezone=UTC
-    username: dev1
+    username: root
     password: 123456
   redis:
     host: 127.0.0.1

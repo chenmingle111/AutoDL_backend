@@ -1,6 +1,7 @@
 package com.autodl_backend.local.service;
 
 import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
+import com.autodl_backend.local.exception.UserDisabledException;
 import com.autodl_backend.local.exception.UserNotFoundException;
 import com.autodl_backend.local.pojo.entity.Users;
 import com.baomidou.mybatisplus.extension.service.IService;

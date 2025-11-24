@@ -1,5 +1,6 @@
 package com.autodl_backend.config;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,13 @@ public class ConfigUtils {
 
     /**
      * 全局配置实例
+     * -- GETTER --
+     *  获取全局配置
+     *
+     * @return 全局配置实例
+
      */
+    @Getter
     private static GlobalConfig globalConfig;
     
     @Autowired
@@ -27,15 +34,7 @@ public class ConfigUtils {
     public void init() {
         ConfigUtils.globalConfig = config;
     }
-    
-    /**
-     * 获取全局配置
-     * @return 全局配置实例
-     */
-    public static GlobalConfig getGlobalConfig() {
-        return globalConfig;
-    }
-    
+
     /**
      * 获取API配置
      * @return API配置

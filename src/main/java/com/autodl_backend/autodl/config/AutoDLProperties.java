@@ -1,4 +1,3 @@
-```
 package com.autodl_backend.autodl.config;
 
 import com.autodl_backend.config.ConfigUtils;
@@ -35,5 +34,4 @@ public class AutoDLProperties {
         // 不执行任何操作，值由GlobalConfig控制
     }
 }
-```
-}
+
