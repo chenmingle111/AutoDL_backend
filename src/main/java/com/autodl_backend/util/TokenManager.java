@@ -1,12 +1,15 @@
 package com.autodl_backend.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.stereotype.Component;
+
 import java.security.SecureRandom;
 import java.time.Instant;
 
 /**
  * Token管理器
  */
+@Component
 public class TokenManager {
 
     private static final SecureRandom RANDOM = new SecureRandom();

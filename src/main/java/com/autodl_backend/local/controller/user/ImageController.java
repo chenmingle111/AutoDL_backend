@@ -1,4 +1,4 @@
-package com.autodl_backend.local.controller;
+package com.autodl_backend.local.controller.user;
 
 import com.autodl_backend.autodl.dto.image.PrivateImageListData;
 import com.autodl_backend.autodl.dto.image.PrivateImageListReq;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller for Image related operations.
  */
 @RestController
-@RequestMapping("/api/images")
+@RequestMapping("/api/user/images")
 public class ImageController {
 
     @Autowired

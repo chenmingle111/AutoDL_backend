@@ -16,10 +16,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private GeneralInterceptor generalInterceptor;
 
+/**
+ * 添加自定义的拦截器，并配置拦截规则
+ */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 注册通用拦截器
-        registry.addInterceptor(generalInterceptor)
+        registry.addInterceptor(generalInterceptor)  // 添加通用拦截器到注册器
                 .addPathPatterns("/**") // 拦截所有请求
                 .excludePathPatterns("/api/login", "/api/register"); // 排除登录注册等接口（根据实际情况调整）
     }

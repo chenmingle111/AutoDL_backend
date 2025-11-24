@@ -8,10 +8,11 @@ import com.autodl_backend.local.pojo.entity.Deployments;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Deployments表的服务层接口
  */
-@Service
 public interface DeploymentsService extends IService<Deployments> {
 
     CreateDeploymentData createDeployment(CreateDeploymentReq req);

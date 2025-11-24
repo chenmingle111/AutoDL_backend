@@ -1,4 +1,4 @@
-package com.autodl_backend.local.controller;
+package com.autodl_backend.local.controller.user;
 
 import com.autodl_backend.autodl.dto.container.ContainerEventData;
 import com.autodl_backend.autodl.dto.container.ContainerEventsReq;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller for Container related operations.
  */
 @RestController
-@RequestMapping("/api/containers")
+@RequestMapping("/api/user/containers")
 public class ContainerController {
 
     @Autowired

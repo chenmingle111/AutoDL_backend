@@ -1,4 +1,4 @@
-package com.autodl_backend.local.controller;
+package com.autodl_backend.local.controller.user;
 
 import com.autodl_backend.autodl.dto.deployment.CreateDeploymentData;
 import com.autodl_backend.autodl.dto.deployment.CreateDeploymentReq;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller for Deployment related operations.
  */
 @RestController
-@RequestMapping("/api/deployments")
+@RequestMapping("/api/user/deployments")
 public class DeploymentController {
 
     @Autowired

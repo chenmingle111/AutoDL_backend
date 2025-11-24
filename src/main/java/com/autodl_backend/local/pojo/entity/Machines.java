@@ -13,6 +13,9 @@ public class Machines {
     @TableId(type = IdType.AUTO)
     private Integer id;
 
+    @TableField("machine_name")
+    private String machineName; // 主机名
+
     @TableField("machine_uuid")
     private String machineUuid; // 主机唯一标识
 

@@ -8,9 +8,13 @@ import com.autodl_backend.autodl.dto.deployment.DeploymentListReq;
 import com.autodl_backend.local.mapper.DeploymentsMapper;
 import com.autodl_backend.local.pojo.entity.Deployments;
 import com.autodl_backend.local.service.DeploymentsService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Deployments Service Implementation
@@ -30,4 +34,5 @@ public class DeploymentsServiceImpl extends ServiceImpl<DeploymentsMapper, Deplo
     public DeploymentListData getDeploymentList(DeploymentListReq req) {
         return autoDLClient.getDeploymentList(req);
     }
+
 }

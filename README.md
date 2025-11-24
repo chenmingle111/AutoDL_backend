@@ -30,3 +30,7 @@ AutoDL
 │   └── util/
 └── Application
 
+#优化
+1.使用webSocket加syncUpdate实现实时更新
+2.分开不同的拦截器，设置执行优先级，
+

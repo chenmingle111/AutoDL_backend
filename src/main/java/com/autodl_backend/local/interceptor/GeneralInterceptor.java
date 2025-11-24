@@ -32,7 +32,7 @@ public class GeneralInterceptor implements HandlerInterceptor {
             throws Exception {
         // TODO: 在此处添加你的业务逻辑
         // 示例：打印请求路径
-        System.out.println("GeneralInterceptor - preHandle: " + request.getRequestURI());
+        System.out.println("preHandle-请求路径: " + request.getRequestURI());
 
         // 如果需要拦截请求，返回 false；否则返回 true
         return true;
