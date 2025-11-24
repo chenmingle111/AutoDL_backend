@@ -15,5 +15,19 @@ import java.util.List;
  */
 public interface ContainerService extends IService<Containers> {
 
+    /**
+     * Query container events
+     */
+    ContainerEventData getContainerEvents(ContainerEventsReq req);
+
+    /**
+     * Query container list
+     */
+    ContainerListData getContainerList(ContainerListReq req);
+
+    /**
+     * Stop a container
+     */
+    Object stopContainer(ContainerStopReq req);
 
 }

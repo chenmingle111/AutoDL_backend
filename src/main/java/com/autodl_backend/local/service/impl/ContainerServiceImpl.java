@@ -22,4 +22,22 @@ import java.util.List;
 @Service
 public class ContainerServiceImpl extends ServiceImpl<ContainersMapper, Containers> implements ContainerService {
 
+    @Autowired
+    private AutoDLClient autoDLClient;
+
+    @Override
+    public ContainerEventData getContainerEvents(ContainerEventsReq req) {
+        return autoDLClient.getContainerEvents(req);
+    }
+
+    @Override
+    public ContainerListData getContainerList(ContainerListReq req) {
+        return autoDLClient.getContainerList(req);
+    }
+
+    @Override
+    public Object stopContainer(ContainerStopReq req) {
+        return autoDLClient.stopContainer(req);
+    }
+
 }
