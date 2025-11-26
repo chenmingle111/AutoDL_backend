@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 /**
  * Request DTO for querying container list.
  */
@@ -47,6 +49,9 @@ public class ContainerListReq {
 
     @JsonProperty("released")
     private Boolean released;
+
+    @JsonProperty("status")
+    private List<String> status;
 
     @JsonProperty("page_index")
     private Integer pageIndex = 1;
