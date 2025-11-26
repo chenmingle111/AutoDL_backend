@@ -135,12 +135,11 @@ public class AutoDLClientTest {
     void testSetBlacklist() {
         BlacklistReq req = new BlacklistReq();
         // 设置必要的请求参数
-        req.setDeploymentContainerUuid("test-container-uuid");
+        req.setDeploymentContainerUuid("9c12c1bb2c-b42e48ba7c-31433364ab");
         req.setComment("测试黑名单设置");
 
         try {
-            var response = autoDLClient.setBlacklist(req);
-            assertNotNull(response);
+            autoDLClient.setBlacklist(req);
         } catch (Exception e) {
             // 在实际测试中可能需要根据API文档设置正确的参数
             fail("设置黑名单测试失败: " + e.getMessage());

@@ -15,5 +15,8 @@ public class BlacklistReq {
     @JsonProperty("deployment_container_uuid")
     private String deploymentContainerUuid;
 
+    @JsonProperty("expire_in_minutes")
+    private Integer expireInMinutes=24*60;
+
     private String comment;
 }
