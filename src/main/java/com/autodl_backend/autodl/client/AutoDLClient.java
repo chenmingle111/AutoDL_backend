@@ -208,7 +208,7 @@ public class AutoDLClient {
      */
     public CreateDeploymentData createDeployment(CreateDeploymentReq req) {
         AutoDLResp<CreateDeploymentData> resp = post("/dev/deployment", req,
-                new ParameterizedTypeReference<AutoDLResp<CreateDeploymentData>>() {
+                new ParameterizedTypeReference<>() {
                 });
         return resp.getData();
     }
@@ -229,7 +229,7 @@ public class AutoDLClient {
     public com.autodl_backend.autodl.dto.image.PrivateImageListData getPrivateImageList(
             com.autodl_backend.autodl.dto.image.PrivateImageListReq req) {
         AutoDLResp<com.autodl_backend.autodl.dto.image.PrivateImageListData> resp = post("/dev/image/private/list", req,
-                new ParameterizedTypeReference<AutoDLResp<com.autodl_backend.autodl.dto.image.PrivateImageListData>>() {
+                new ParameterizedTypeReference<>() {
                 });
         return resp.getData();
     }

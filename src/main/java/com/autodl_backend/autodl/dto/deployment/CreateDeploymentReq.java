@@ -25,6 +25,15 @@ public class CreateDeploymentReq {
     @JsonProperty("reuse_container")
     private Boolean reuseContainer;
 
+    @JsonProperty("reuse_container_scope")
+    private String reuseContainerScope;
+
+    @JsonProperty("service_6006_port_protocol")
+    private String service6006PortProtocol;
+
+    @JsonProperty("service_6008_port_protocol")
+    private String service6008PortProtocol;
+
     @JsonProperty("container_template")
     private ContainerTemplate containerTemplate;
 }

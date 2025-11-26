@@ -14,8 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 public class ContainerTemplate {
 
-    @JsonProperty("cuda_v")
-    private Integer cudaV;
+
+    @JsonProperty("dc_list")
+    private List<String> dcList;
+
+    @JsonProperty("cuda_v_from")
+    private Integer cudaVFrom;
+
+    @JsonProperty("cuda_v_to")
+    private Integer cudaVTo;
 
     @JsonProperty("gpu_name_set")
     private List<String> gpuNameSet;
@@ -43,6 +50,9 @@ public class ContainerTemplate {
 
     @JsonProperty("image_uuid")
     private String imageUuid;
+
+    @JsonProperty("cmd_before_shutdown")
+    private String cmdBeforeShutdown;
 
     @JsonProperty("cmd")
     private String cmd;
