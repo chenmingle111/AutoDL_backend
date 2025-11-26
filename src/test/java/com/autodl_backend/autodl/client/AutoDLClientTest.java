@@ -10,6 +10,7 @@ import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
 import com.autodl_backend.autodl.dto.deployment.CreateDeploymentReq;
 import com.autodl_backend.autodl.dto.deployment.DeploymentListReq;
 import com.autodl_backend.autodl.dto.image.PrivateImageListReq;
+import com.autodl_backend.autodl.dto.machines.GpuStockReq;
 import lombok.extern.slf4j.Slf4j;
 import lombok.var;
 import org.junit.jupiter.api.BeforeEach;
@@ -135,7 +136,7 @@ public class AutoDLClientTest {
     void testSetBlacklist() {
         BlacklistReq req = new BlacklistReq();
         // 设置必要的请求参数
-        req.setDeploymentContainerUuid("9c12c1bb2c-b42e48ba7c-31433364ab");
+        req.setDeploymentContainerUuid("9c12c1bb2c-bd79408a8f-53ce5214f4-8404088b5");
         req.setComment("测试黑名单设置");
 
         try {
@@ -149,7 +150,11 @@ public class AutoDLClientTest {
     @Test
     void testGetGpuStock() {
         try {
-            var response = autoDLClient.getGpuStock();
+            GpuStockReq req = new GpuStockReq();
+
+            req.setRegionSign("westDC2");
+
+            var response = autoDLClient.getGpuStock(req);
             assertNotNull(response);
         } catch (Exception e) {
             fail("获取GPU库存测试失败: " + e.getMessage());

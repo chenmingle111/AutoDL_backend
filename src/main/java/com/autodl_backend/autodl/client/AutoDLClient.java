@@ -13,6 +13,8 @@ import com.autodl_backend.autodl.dto.deployment.CreateDeploymentReq;
 import com.autodl_backend.autodl.dto.deployment.DeploymentListData;
 import com.autodl_backend.autodl.dto.deployment.DeploymentListReq;
 import com.autodl_backend.autodl.dto.machines.GpuStockData;
+import com.autodl_backend.autodl.dto.machines.GpuStockInfo;
+import com.autodl_backend.autodl.dto.machines.GpuStockReq;
 import com.autodl_backend.autodl.exception.AutoDLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -22,6 +24,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Client for interacting with AutoDL API.
@@ -129,7 +134,7 @@ public class AutoDLClient {
 
     // 返回响应体中的内容
     /**
-     * Query container events
+     * 获取容器事件
      */
     public ContainerEventData getContainerEvents(ContainerEventsReq req) {
         AutoDLResp<ContainerEventData> resp = post("/dev/deployment/container/event/list", req,
@@ -139,7 +144,7 @@ public class AutoDLClient {
     }
 
     /**
-     * Query container list
+     * 获取容器列表
      */
     public ContainerListData getContainerList(ContainerListReq req) {
         AutoDLResp<ContainerListData> resp = post("/dev/deployment/container/list", req,
@@ -149,7 +154,7 @@ public class AutoDLClient {
     }
 
     /**
-     * Stop a container
+     * 停止容器
      */
     public Object stopContainer(ContainerStopReq req) {
         AutoDLResp<Object> resp = put("/dev/deployment/container/stop", req,
@@ -159,7 +164,7 @@ public class AutoDLClient {
     }
 
     /**
-     * Set scheduling blacklist
+     * 设置调度黑名单
      */
     public Object setBlacklist(BlacklistReq req) {
         AutoDLResp<Object> resp = post("/dev/deployment/blacklist", req,
@@ -169,17 +174,19 @@ public class AutoDLClient {
     }
 
     /**
-     * Get GPU stock information
+     * 获取GPU库存
      */
-    public GpuStockData getGpuStock() {
-        AutoDLResp<GpuStockData> resp = get("/dev/machine/gpu_stock",
-                new ParameterizedTypeReference<AutoDLResp<GpuStockData>>() {
+    public GpuStockData getGpuStock(GpuStockReq req) {
+        // 直接接收数组格式的响应
+        AutoDLResp<List<Map<String, GpuStockInfo>>> resp = post("/dev/machine/region/gpu_stock", req,
+                new ParameterizedTypeReference<>() {
                 });
-        return resp.getData();
+        // 将数组转换为GpuStockData对象
+        return new GpuStockData(resp.getData());
     }
 
     /**
-     * Generic GET method
+     * get请求
      */
     public <T> AutoDLResp<T> get(String path, ParameterizedTypeReference<AutoDLResp<T>> typeReference) {
         String url = autoDLProperties.getUrl() + path;
@@ -204,7 +211,7 @@ public class AutoDLClient {
     }
 
     /**
-     * Create a new deployment
+     * 创建部署
      */
     public CreateDeploymentData createDeployment(CreateDeploymentReq req) {
         AutoDLResp<CreateDeploymentData> resp = post("/dev/deployment", req,
@@ -214,7 +221,7 @@ public class AutoDLClient {
     }
 
     /**
-     * Get deployment list
+     * 获取部署列表
      */
     public DeploymentListData getDeploymentList(DeploymentListReq req) {
         AutoDLResp<DeploymentListData> resp = post("/dev/deployment/list", req,
@@ -224,7 +231,7 @@ public class AutoDLClient {
     }
 
     /**
-     * Get private image list
+     * 获取私有镜像
      */
     public com.autodl_backend.autodl.dto.image.PrivateImageListData getPrivateImageList(
             com.autodl_backend.autodl.dto.image.PrivateImageListReq req) {

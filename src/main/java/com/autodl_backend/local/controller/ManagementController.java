@@ -2,6 +2,7 @@ package com.autodl_backend.local.controller;
 
 import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
 import com.autodl_backend.autodl.dto.machines.GpuStockData;
+import com.autodl_backend.autodl.dto.machines.GpuStockReq;
 import com.autodl_backend.local.pojo.response.ApiResponse;
 import com.autodl_backend.local.service.ManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class ManagementController {
      * @return Result containing GPU stock data.
      */
     @GetMapping("/gpu-stock")
-    public ApiResponse<GpuStockData> getGpuStock() {
-        return ApiResponse.success(managementService.getGpuStock());
+    public ApiResponse<GpuStockData> getGpuStock(GpuStockReq req) {
+        return ApiResponse.success(managementService.getGpuStock(req));
     }
 }

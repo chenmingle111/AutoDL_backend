@@ -2,6 +2,7 @@ package com.autodl_backend.local.service;
 
 import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
 import com.autodl_backend.autodl.dto.machines.GpuStockData;
+import com.autodl_backend.autodl.dto.machines.GpuStockReq;
 
 /**
  * Service interface for management operations.
@@ -16,5 +17,5 @@ public interface ManagementService {
     /**
      * Get GPU stock information
      */
-    GpuStockData getGpuStock();
+    GpuStockData getGpuStock(GpuStockReq req);
 }
