@@ -17,4 +17,10 @@ public class ContainerStopReq {
 
     @JsonProperty("decrease_one_replica_num")
     private Boolean decreaseOneReplicaNum = false;
+
+    @JsonProperty("no_cache")
+    private Boolean noCache = false;
+
+    @JsonProperty("cmd_before_shutdown")
+    private String cmdBeforeShutdown;
 }

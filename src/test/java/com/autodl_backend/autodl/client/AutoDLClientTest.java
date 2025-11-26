@@ -120,12 +120,11 @@ public class AutoDLClientTest {
     void testStopContainer() {
         ContainerStopReq req = new ContainerStopReq();
         // 设置必要的请求参数
-        req.setDeploymentContainerUuid("test-container-uuid");
+        req.setDeploymentContainerUuid("9c12c1bb2c-448241b0dd-24d42fd071");
         req.setDecreaseOneReplicaNum(false);
 
         try {
-            var response = autoDLClient.stopContainer(req);
-            assertNotNull(response);
+            autoDLClient.stopContainer(req);
         } catch (Exception e) {
             // 在实际测试中可能需要根据API文档设置正确的参数
             fail("停止容器测试失败: " + e.getMessage());

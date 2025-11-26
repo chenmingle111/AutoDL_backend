@@ -153,7 +153,7 @@ public class AutoDLClient {
      */
     public Object stopContainer(ContainerStopReq req) {
         AutoDLResp<Object> resp = put("/dev/deployment/container/stop", req,
-                new ParameterizedTypeReference<AutoDLResp<Object>>() {
+                new ParameterizedTypeReference<>() {
                 });
         return resp.getData();
     }
