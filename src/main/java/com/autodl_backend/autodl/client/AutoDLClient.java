@@ -133,7 +133,7 @@ public class AutoDLClient {
      */
     public ContainerEventData getContainerEvents(ContainerEventsReq req) {
         AutoDLResp<ContainerEventData> resp = post("/dev/deployment/container/event/list", req,
-                new ParameterizedTypeReference<AutoDLResp<ContainerEventData>>() {
+                new ParameterizedTypeReference<>() {
                 });
         return resp.getData();
     }

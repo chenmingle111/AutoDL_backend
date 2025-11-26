@@ -86,7 +86,7 @@ public class AutoDLClientTest {
     void testGetContainerEvents() {
         ContainerEventsReq req = new ContainerEventsReq();
         // 设置必要的请求参数
-        req.setDeploymentUuid("test-deployment-uuid");
+        req.setDeploymentUuid("9c12c1bb2c");
         req.setPageIndex(1);
         req.setPageSize(10);
 
@@ -162,20 +162,23 @@ public class AutoDLClientTest {
     void testCreateDeployment() {
         CreateDeploymentReq req = new CreateDeploymentReq();
         // 设置必要的请求参数
-        req.setName("测试部署");
+        req.setName("api自动创建");
         req.setDeploymentType("ReplicaSet");
         req.setReplicaNum(2);
         req.setReuseContainer(true);
         
         // 创建容器模板
         var containerTemplate = com.autodl_backend.autodl.dto.deployment.ContainerTemplate.builder()
-                .cudaV(113)
+                .dcList(java.util.Arrays.asList("westDC2", "westDC3"))
                 .gpuNameSet(java.util.Arrays.asList("RTX 4090"))
+                .cudaVFrom(113)
+                .cudaVTo(128)
                 .gpuNum(1)
-                .memorySizeFrom(1)
-                .memorySizeTo(256)
                 .cpuNumFrom(1)
                 .cpuNumTo(100)
+                .memorySizeFrom(1)
+                .memorySizeTo(256)
+                .cmd("sleep 100")
                 .priceFrom(100)
                 .priceTo(9000)
                 .imageUuid("image-d8ccae7a70")
