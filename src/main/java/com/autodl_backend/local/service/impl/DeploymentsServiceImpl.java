@@ -1,10 +1,7 @@
 package com.autodl_backend.local.service.impl;
 
 import com.autodl_backend.autodl.client.AutoDLClient;
-import com.autodl_backend.autodl.dto.deployment.CreateDeploymentData;
-import com.autodl_backend.autodl.dto.deployment.CreateDeploymentReq;
-import com.autodl_backend.autodl.dto.deployment.DeploymentListData;
-import com.autodl_backend.autodl.dto.deployment.DeploymentListReq;
+import com.autodl_backend.autodl.dto.deployment.*;
 import com.autodl_backend.local.mapper.DeploymentsMapper;
 import com.autodl_backend.local.pojo.entity.Deployments;
 import com.autodl_backend.local.service.DeploymentsService;
@@ -29,5 +26,20 @@ public class DeploymentsServiceImpl extends ServiceImpl<DeploymentsMapper, Deplo
     @Override
     public DeploymentListData getDeploymentList(DeploymentListReq req) {
         return autoDLClient.getDeploymentList(req);
+    }
+
+    @Override
+    public Object deleteDeployment(DeploymentDeleteReq req) {
+        return null;
+    }
+
+    @Override
+    public Object stopDeployment(StopDeploymentReq req) {
+        return null;
+    }
+
+    @Override
+    public void setReplicas(ReplicaNumReq req) {
+
     }
 }

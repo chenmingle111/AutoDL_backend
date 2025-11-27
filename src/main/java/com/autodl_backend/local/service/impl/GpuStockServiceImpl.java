@@ -12,4 +12,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GpuStockServiceImpl extends ServiceImpl<GpuStockMapper, GpuStock> implements GpuStockService {
+
+    /**
+     * 获取GPU库存信息
+     */
+
 }
