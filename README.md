@@ -30,7 +30,12 @@ AutoDL
 │   └── util/
 └── Application
 
-1.设置websocket实时更新类 + sync5min更新
-2.后续完善创建部署时，以下两个请求参数专门的限制，现在默认都必填
-replica_num	| ReplicaSet、Job必填
-parallelism_num	| Job必填
+1.实时更新功能：设置websocket实时更新类 + sync5min更新
+2.请求参数限制：后续完善创建部署时，以下两个请求参数专门的限制，现在默认都必填
+    replica_num	| ReplicaSet、Job必填
+    parallelism_num	| Job必填
+3.登录和注册功能：
+    token：
+        令牌的生成，验证逻辑当前不佳，建议修改为JWT令牌(需要时间戳，用户id，token一起存入用户数据库)
+    细节问题：
+        当前所有用户都用的时学长的token访问autodl，但autodl并未提供创建token的api
