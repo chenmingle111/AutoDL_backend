@@ -23,6 +23,4 @@ public class ContainerListData {
 
     @JsonProperty("max_page")
     private Integer maxPage;
-
-    private Integer offset;
 }

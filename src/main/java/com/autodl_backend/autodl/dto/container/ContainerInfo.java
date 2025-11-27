@@ -18,12 +18,9 @@ public class ContainerInfo {
     @JsonProperty("root_password")
     private String rootPassword;
 
-    @JsonProperty("service_url")
-    private String serviceUrl;
+    @JsonProperty("service_6006_port_url")
+    private String service6006PortUrl;
 
-    @JsonProperty("proxy_host")
-    private String proxyHost;
-
-    @JsonProperty("custom_port")
-    private Integer customPort;
+    @JsonProperty("service_6008_port_url")
+    private String service6008PortUrl;
 }

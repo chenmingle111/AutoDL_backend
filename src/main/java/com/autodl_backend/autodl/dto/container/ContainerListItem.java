@@ -17,6 +17,9 @@ public class ContainerListItem {
     @JsonProperty("uuid")
     private String uuid;
 
+    @JsonProperty("data_center")
+    private String dataCenter;
+
     @JsonProperty("machine_id")
     private String machineId;
 

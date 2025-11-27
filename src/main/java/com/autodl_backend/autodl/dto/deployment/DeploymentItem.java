@@ -39,6 +39,9 @@ public class DeploymentItem {
     @JsonProperty("reuse_container")
     private Boolean reuseContainer;
 
+    @JsonProperty("service_port_protocol")
+    private String servicePortProtocol;
+
     @JsonProperty("starting_num")
     private Integer startingNum;
 
