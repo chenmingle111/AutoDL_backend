@@ -30,16 +30,16 @@ public class DeploymentsServiceImpl extends ServiceImpl<DeploymentsMapper, Deplo
 
     @Override
     public Object deleteDeployment(DeploymentDeleteReq req) {
-        return null;
+        return autoDLClient.deleteDeployment(req);
     }
 
     @Override
     public Object stopDeployment(StopDeploymentReq req) {
-        return null;
+        return autoDLClient.stopDeployment(req);
     }
 
     @Override
-    public void setReplicas(ReplicaNumReq req) {
-
+    public Object setReplicas(ReplicaNumReq req) {
+        return autoDLClient.setReplicaNum(req);
     }
 }

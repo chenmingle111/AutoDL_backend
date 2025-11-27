@@ -28,6 +28,6 @@ public class ImageController {
      */
     @PostMapping("/private/list")
     public ApiResponse<PrivateImageListData> listPrivateImages(@RequestBody PrivateImageListReq req) {
-        return ApiResponse.success(imagesService.getPrivateImages(req.getPageIndex(), req.getPageSize()));
+        return ApiResponse.success(imagesService.getPrivateImages(req));
     }
 }

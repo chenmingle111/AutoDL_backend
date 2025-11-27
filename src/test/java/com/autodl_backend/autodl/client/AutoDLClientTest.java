@@ -133,6 +133,21 @@ public class AutoDLClientTest {
     }
 
     @Test
+    void testStopDeployment() {
+        StopDeploymentReq req = new StopDeploymentReq();
+
+        req.setDeploymentUuid("983e8c191f");
+        req.setOperate("stop");
+
+        try {
+            autoDLClient.stopDeployment(req);
+        } catch (Exception e) {
+            // 在实际测试中可能需要根据API文档设置正确的参数
+            fail("停止部署测试失败: " + e.getMessage());
+        }
+    }
+
+    @Test
     void testSetBlacklist() {
         BlacklistReq req = new BlacklistReq();
         // 设置必要的请求参数
@@ -250,7 +265,7 @@ public class AutoDLClientTest {
     void testDeleteDeployment() {
         DeploymentDeleteReq req = new DeploymentDeleteReq();
         // 设置必要的请求参数
-        req.setDeploymentUuid("42fa05848a");
+        req.setDeploymentUuid("983e8c191f");
 
         try {
             autoDLClient.deleteDeployment(req);

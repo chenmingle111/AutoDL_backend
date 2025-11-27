@@ -30,7 +30,8 @@ public class ManagementController {
      */
     @PostMapping("/blacklist")
     public ApiResponse<Object> setBlacklist(@RequestBody BlacklistReq req) {
-        return ApiResponse.success(managementService.setBlacklist(req));
+        managementService.setBlacklist(req);
+        return ApiResponse.success();
     }
 
     /**

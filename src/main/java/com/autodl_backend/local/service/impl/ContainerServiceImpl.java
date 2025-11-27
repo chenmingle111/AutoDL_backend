@@ -20,9 +20,7 @@ public class ContainerServiceImpl implements ContainerService {
     private AutoDLClient autoDLClient;
 
     @Override
-    public ContainerEventData getContainerEvents(ContainerEventsReq req) {
-        return autoDLClient.getContainerEvents(req);
-    }
+    public ContainerEventData getContainerEvents(ContainerEventsReq req) { return autoDLClient.getContainerEvents(req);}
 
     @Override
     public ContainerListData getContainerList(ContainerListReq req) {

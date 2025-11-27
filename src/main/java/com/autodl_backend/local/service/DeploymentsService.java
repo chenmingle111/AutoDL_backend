@@ -19,5 +19,5 @@ public interface DeploymentsService extends IService<Deployments> {
 
     Object stopDeployment(StopDeploymentReq req);
 
-    void setReplicas(ReplicaNumReq req);
+    Object setReplicas(ReplicaNumReq req);
 }

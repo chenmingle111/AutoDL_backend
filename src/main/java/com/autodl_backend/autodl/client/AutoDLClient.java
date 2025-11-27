@@ -7,13 +7,7 @@ import com.autodl_backend.autodl.dto.container.ContainerListData;
 import com.autodl_backend.autodl.dto.container.ContainerListReq;
 import com.autodl_backend.autodl.dto.container.ContainerStopReq;
 import com.autodl_backend.autodl.dto.container.ContainerEventData;
-import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
-import com.autodl_backend.autodl.dto.deployment.CreateDeploymentData;
-import com.autodl_backend.autodl.dto.deployment.CreateDeploymentReq;
-import com.autodl_backend.autodl.dto.deployment.DeploymentDeleteReq;
-import com.autodl_backend.autodl.dto.deployment.DeploymentListData;
-import com.autodl_backend.autodl.dto.deployment.DeploymentListReq;
-import com.autodl_backend.autodl.dto.deployment.ReplicaNumReq;
+import com.autodl_backend.autodl.dto.deployment.*;
 import com.autodl_backend.autodl.dto.machines.GpuStockData;
 import com.autodl_backend.autodl.dto.machines.GpuStockInfo;
 import com.autodl_backend.autodl.dto.machines.GpuStockReq;
@@ -286,6 +280,16 @@ public class AutoDLClient {
      */
     public Object deleteDeployment(DeploymentDeleteReq req) {
         AutoDLResp<Object> resp = delete("/dev/deployment", req,
+                new ParameterizedTypeReference<>() {
+                });
+        return resp.getData();
+    }
+
+    /**
+     * 停止部署
+     */
+    public Object stopDeployment(StopDeploymentReq req) {
+        AutoDLResp<Object> resp = put("/dev/deployment/operate", req,
                 new ParameterizedTypeReference<>() {
                 });
         return resp.getData();
