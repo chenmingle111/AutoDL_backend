@@ -16,12 +16,12 @@ public class ReplicaNumReq {
     /**
      * 部署uuid
      */
-    @JsonProperty("deployment_uuid")
+    @JsonProperty(value = "deployment_uuid",required = true)
     private String deploymentUuid;
 
     /**
      * 副本数量。仅支持ReplicaSet的部署类型
      */
-    @JsonProperty("replica_num")
+    @JsonProperty(value = "replica_num",required = true)
     private Integer replicaNum;
 }

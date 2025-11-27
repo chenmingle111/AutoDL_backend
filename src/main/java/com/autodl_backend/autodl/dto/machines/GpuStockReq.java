@@ -18,7 +18,7 @@ public class GpuStockReq {
     /**
      * 不同地区的标识码（见附录）
      */
-    @JsonProperty("region_sign")
+    @JsonProperty(value = "region_sign",required = true)
     private String regionSign;
 
     /**

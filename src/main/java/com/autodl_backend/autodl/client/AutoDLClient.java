@@ -8,6 +8,8 @@ import com.autodl_backend.autodl.dto.container.ContainerListReq;
 import com.autodl_backend.autodl.dto.container.ContainerStopReq;
 import com.autodl_backend.autodl.dto.container.ContainerEventData;
 import com.autodl_backend.autodl.dto.deployment.*;
+import com.autodl_backend.autodl.dto.image.PrivateImageListData;
+import com.autodl_backend.autodl.dto.image.PrivateImageListReq;
 import com.autodl_backend.autodl.dto.machines.GpuStockData;
 import com.autodl_backend.autodl.dto.machines.GpuStockInfo;
 import com.autodl_backend.autodl.dto.machines.GpuStockReq;
@@ -197,7 +199,7 @@ public class AutoDLClient {
      */
     public ContainerListData getContainerList(ContainerListReq req) {
         AutoDLResp<ContainerListData> resp = post("/dev/deployment/container/list", req,
-                new ParameterizedTypeReference<AutoDLResp<ContainerListData>>() {
+                new ParameterizedTypeReference<>() {
                 });
         return resp.getData();
     }
@@ -217,7 +219,7 @@ public class AutoDLClient {
      */
     public Object setBlacklist(BlacklistReq req) {
         AutoDLResp<Object> resp = post("/dev/deployment/blacklist", req,
-                new ParameterizedTypeReference<AutoDLResp<Object>>() {
+                new ParameterizedTypeReference<>() {
                 });
         return resp.getData();
     }
@@ -249,7 +251,7 @@ public class AutoDLClient {
      */
     public DeploymentListData getDeploymentList(DeploymentListReq req) {
         AutoDLResp<DeploymentListData> resp = post("/dev/deployment/list", req,
-                new ParameterizedTypeReference<AutoDLResp<DeploymentListData>>() {
+                new ParameterizedTypeReference<>() {
                 });
         return resp.getData();
     }
@@ -257,9 +259,8 @@ public class AutoDLClient {
     /**
      * 获取私有镜像
      */
-    public com.autodl_backend.autodl.dto.image.PrivateImageListData getPrivateImageList(
-            com.autodl_backend.autodl.dto.image.PrivateImageListReq req) {
-        AutoDLResp<com.autodl_backend.autodl.dto.image.PrivateImageListData> resp = post("/dev/image/private/list", req,
+    public PrivateImageListData getPrivateImageList(PrivateImageListReq req) {
+        AutoDLResp<PrivateImageListData> resp = post("/dev/image/private/list", req,
                 new ParameterizedTypeReference<>() {
                 });
         return resp.getData();

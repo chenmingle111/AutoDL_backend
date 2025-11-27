@@ -16,7 +16,7 @@ public class DeploymentDeleteReq {
     /**
      * 部署uuid
      */
-    @JsonProperty("deployment_uuid")
+    @JsonProperty(value = "deployment_uuid",required = true)
     private String deploymentUuid;
 
 }

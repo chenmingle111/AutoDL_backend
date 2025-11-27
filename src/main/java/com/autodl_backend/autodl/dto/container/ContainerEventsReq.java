@@ -12,16 +12,16 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContainerEventsReq {
-    @JsonProperty("deployment_uuid")
+    @JsonProperty(value = "deployment_uuid",required = true)
     private String deploymentUuid;
 
     @JsonProperty("deployment_container_uuid")
     private String deploymentContainerUuid;
 
-    @JsonProperty("page_index")
+    @JsonProperty(value = "page_index",required = true)
     private Integer pageIndex = 1;
 
-    @JsonProperty("page_size")
+    @JsonProperty(value = "page_size",required = true)
     private Integer pageSize = 10;
 
     @JsonProperty("offset")

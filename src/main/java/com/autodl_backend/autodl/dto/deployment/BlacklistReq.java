@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlacklistReq {
-    @JsonProperty("deployment_container_uuid")
+    @JsonProperty(value = "deployment_container_uuid",required = true)
     private String deploymentContainerUuid;
 
     @JsonProperty("expire_in_minutes")

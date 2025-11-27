@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContainerListReq {
-    @JsonProperty("deployment_uuid")
+    @JsonProperty(value = "deployment_uuid",required = true)
     private String deploymentUuid;
 
     @JsonProperty("container_uuid")
@@ -53,10 +53,10 @@ public class ContainerListReq {
     @JsonProperty("status")
     private List<String> status;
 
-    @JsonProperty("page_index")
+    @JsonProperty(value = "page_index",required = true)
     private Integer pageIndex = 1;
 
-    @JsonProperty("page_size")
+    @JsonProperty(value = "page_size",required = true)
     private Integer pageSize = 10;
 
     @JsonProperty("offset")

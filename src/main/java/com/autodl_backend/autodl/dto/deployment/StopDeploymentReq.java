@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StopDeploymentReq {
 
-    @JsonProperty("deployment_uuid")
+    @JsonProperty(value = "deployment_uuid",required = true)
     private String deploymentUuid;
 
+    @JsonProperty(value = "operate",required = true)
     private String operate = "stop";
 }

@@ -10,16 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreateDeploymentReq {
 
-    @JsonProperty("name")
+    @JsonProperty(value = "name",required = true)
     private String name;
 
-    @JsonProperty("deployment_type")
+    @JsonProperty(value = "deployment_type",required = true)
     private String deploymentType;
 
-    @JsonProperty("replica_num")
+    @JsonProperty(value = "replica_num",required = true)
     private Integer replicaNum;
 
-    @JsonProperty("parallelism_num")
+    @JsonProperty(value = "parallelism_num",required = true)
     private Integer parallelismNum;
 
     @JsonProperty("reuse_container")
@@ -34,6 +34,6 @@ public class CreateDeploymentReq {
     @JsonProperty("service_6008_port_protocol")
     private String service6008PortProtocol;
 
-    @JsonProperty("container_template")
+    @JsonProperty(value = "container_template",required = true)
     private ContainerTemplate containerTemplate;
 }

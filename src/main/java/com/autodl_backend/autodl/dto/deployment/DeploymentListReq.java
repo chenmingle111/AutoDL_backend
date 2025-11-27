@@ -16,33 +16,29 @@ public class DeploymentListReq {
     /**
      * 页码
      */
-    @JsonProperty("page_index")
+    @JsonProperty(value = "page_index",required = true)
     private Integer pageIndex;
 
     /**
      * 每页条目数
      */
-    @JsonProperty("page_size")
+    @JsonProperty(value = "page_size",required = true)
     private Integer pageSize;
 
     /**
-     * 部署名称（不支持模糊查询）
+     * 部署名称
      */
     @JsonProperty("name")
     private String name;
 
     /**
      * 部署状态筛选
-     * 可选值：
-     * - running: 筛选部署中的记录
-     * - stopped: 筛选已停止的记录
-     * - 空: 筛选全部记录
      */
     @JsonProperty("status")
     private String status;
 
     /**
-     * 部署UUID（选填）
+     * 部署UUID
      */
     @JsonProperty("deployment_uuid")
     private String deploymentUuid;

@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 public class PrivateImageListReq {
-    @JsonProperty("page_index")
+    @JsonProperty(value = "page_index",required = true)
     private Integer pageIndex;
 
-    @JsonProperty("page_size")
+    @JsonProperty(value = "page_size",required = true)
     private Integer pageSize;
 
     private Integer offset;

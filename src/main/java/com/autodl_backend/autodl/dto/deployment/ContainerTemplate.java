@@ -15,40 +15,40 @@ import java.util.List;
 public class ContainerTemplate {
 
 
-    @JsonProperty("dc_list")
+    @JsonProperty(value = "dc_list",required = true)
     private List<String> dcList;
 
-    @JsonProperty("cuda_v_from")
+    @JsonProperty(value = "cuda_v_from",required = true)
     private Integer cudaVFrom;
 
-    @JsonProperty("cuda_v_to")
+    @JsonProperty(value = "cuda_v_to",required = true)
     private Integer cudaVTo;
 
-    @JsonProperty("gpu_name_set")
+    @JsonProperty(value = "gpu_name_set",required = true)
     private List<String> gpuNameSet;
 
-    @JsonProperty("gpu_num")
+    @JsonProperty(value = "gpu_num",required = true)
     private Integer gpuNum;
 
-    @JsonProperty("memory_size_from")
+    @JsonProperty(value = "memory_size_from",required = true)
     private Integer memorySizeFrom;
 
-    @JsonProperty("memory_size_to")
+    @JsonProperty(value = "memory_size_to",required = true)
     private Integer memorySizeTo;
 
-    @JsonProperty("cpu_num_from")
+    @JsonProperty(value = "cpu_num_from",required = true)
     private Integer cpuNumFrom;
 
-    @JsonProperty("cpu_num_to")
+    @JsonProperty(value = "cpu_num_to",required = true)
     private Integer cpuNumTo;
 
-    @JsonProperty("price_from")
+    @JsonProperty(value = "price_from",required = true)
     private Integer priceFrom;
 
-    @JsonProperty("price_to")
+    @JsonProperty(value = "price_to",required = true)
     private Integer priceTo;
 
-    @JsonProperty("image_uuid")
+    @JsonProperty(value = "image_uuid",required = true)
     private String imageUuid;
 
     @JsonProperty("cmd_before_shutdown")

@@ -30,3 +30,7 @@ AutoDL
 │   └── util/
 └── Application
 
+1.设置websocket实时更新类 + sync5min更新
+2.后续完善创建部署时，以下两个请求参数专门的限制，现在默认都必填
+replica_num	| ReplicaSet、Job必填
+parallelism_num	| Job必填

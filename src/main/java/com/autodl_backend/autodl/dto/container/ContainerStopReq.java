@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContainerStopReq {
-    @JsonProperty("deployment_container_uuid")
+    @JsonProperty(value = "deployment_container_uuid",required = true)
     private String deploymentContainerUuid;
 
     @JsonProperty("decrease_one_replica_num")
