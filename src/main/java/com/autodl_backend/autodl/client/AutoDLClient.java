@@ -12,6 +12,7 @@ import com.autodl_backend.autodl.dto.deployment.CreateDeploymentData;
 import com.autodl_backend.autodl.dto.deployment.CreateDeploymentReq;
 import com.autodl_backend.autodl.dto.deployment.DeploymentListData;
 import com.autodl_backend.autodl.dto.deployment.DeploymentListReq;
+import com.autodl_backend.autodl.dto.deployment.ReplicaNumReq;
 import com.autodl_backend.autodl.dto.machines.GpuStockData;
 import com.autodl_backend.autodl.dto.machines.GpuStockInfo;
 import com.autodl_backend.autodl.dto.machines.GpuStockReq;
@@ -236,6 +237,16 @@ public class AutoDLClient {
     public com.autodl_backend.autodl.dto.image.PrivateImageListData getPrivateImageList(
             com.autodl_backend.autodl.dto.image.PrivateImageListReq req) {
         AutoDLResp<com.autodl_backend.autodl.dto.image.PrivateImageListData> resp = post("/dev/image/private/list", req,
+                new ParameterizedTypeReference<>() {
+                });
+        return resp.getData();
+    }
+
+    /**
+     * 设置副本数量
+     */
+    public Object setReplicaNum(ReplicaNumReq req) {
+        AutoDLResp<Object> resp = put("/api/v1/dev/deployment/replica_num", req,
                 new ParameterizedTypeReference<>() {
                 });
         return resp.getData();

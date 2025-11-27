@@ -1,4 +1,4 @@
-package com.autodl_backend.autodl.conf;
+package com.autodl_backend.autodl.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
