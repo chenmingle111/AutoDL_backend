@@ -10,6 +10,7 @@ import com.autodl_backend.autodl.dto.container.ContainerEventData;
 import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
 import com.autodl_backend.autodl.dto.deployment.CreateDeploymentData;
 import com.autodl_backend.autodl.dto.deployment.CreateDeploymentReq;
+import com.autodl_backend.autodl.dto.deployment.DeploymentDeleteReq;
 import com.autodl_backend.autodl.dto.deployment.DeploymentListData;
 import com.autodl_backend.autodl.dto.deployment.DeploymentListReq;
 import com.autodl_backend.autodl.dto.deployment.ReplicaNumReq;
@@ -106,6 +107,59 @@ public class AutoDLClient {
     }
 
     /**
+     * 发送DELETE请求到AutoDL API并处理响应
+     */
+    public <T> AutoDLResp<T> delete(String path, Object req, ParameterizedTypeReference<AutoDLResp<T>> typeReference) {
+        // 构建完整的API URL
+        String url = autoDLProperties.getUrl() + path;
+        // 设置HTTP请求头
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", autoDLProperties.getToken()); // 设置认证token
+        headers.set("Content-Type", "application/json"); // 设置内容类型为JSON
+        HttpEntity<Object> entity = new HttpEntity<>(req, headers); // 创建HTTP请求实体，包含请求体和请求头
+
+        ResponseEntity<AutoDLResp<T>> response = restTemplate.exchange(url, HttpMethod.DELETE, entity, typeReference); // 发送DELETE请求并获取响应
+        AutoDLResp<T> result = response.getBody();
+
+        // Check for null response
+        if (result == null) {
+            throw new AutoDLException("AutoDL API returned null response");
+        }
+
+        // Check for error code
+        if (!"Success".equals(result.getCode())) {
+            throw new AutoDLException(result.getCode(), result.getMsg());
+        }
+
+        return result;
+    }
+
+    /**
+     * get请求
+     */
+    public <T> AutoDLResp<T> get(String path, ParameterizedTypeReference<AutoDLResp<T>> typeReference) {
+        String url = autoDLProperties.getUrl() + path;
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", autoDLProperties.getToken());
+        HttpEntity<Object> entity = new HttpEntity<>(null, headers);
+
+        ResponseEntity<AutoDLResp<T>> response = restTemplate.exchange(url, HttpMethod.GET, entity, typeReference);
+        AutoDLResp<T> result = response.getBody();
+
+        // Check for null response
+        if (result == null) {
+            throw new AutoDLException("AutoDL API returned null response");
+        }
+
+        // Check for error code
+        if (!"Success".equals(result.getCode())) {
+            throw new AutoDLException(result.getCode(), result.getMsg());
+        }
+
+        return result;
+    }
+
+    /**
      * 创建实例的方法
      */
     public AutoDLResp<Object> createInstance(AutoDLCreateReq req) {
@@ -187,31 +241,6 @@ public class AutoDLClient {
     }
 
     /**
-     * get请求
-     */
-    public <T> AutoDLResp<T> get(String path, ParameterizedTypeReference<AutoDLResp<T>> typeReference) {
-        String url = autoDLProperties.getUrl() + path;
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", autoDLProperties.getToken());
-        HttpEntity<Object> entity = new HttpEntity<>(null, headers);
-
-        ResponseEntity<AutoDLResp<T>> response = restTemplate.exchange(url, HttpMethod.GET, entity, typeReference);
-        AutoDLResp<T> result = response.getBody();
-
-        // Check for null response
-        if (result == null) {
-            throw new AutoDLException("AutoDL API returned null response");
-        }
-
-        // Check for error code
-        if (!"Success".equals(result.getCode())) {
-            throw new AutoDLException(result.getCode(), result.getMsg());
-        }
-
-        return result;
-    }
-
-    /**
      * 创建部署
      */
     public CreateDeploymentData createDeployment(CreateDeploymentReq req) {
@@ -246,7 +275,17 @@ public class AutoDLClient {
      * 设置副本数量
      */
     public Object setReplicaNum(ReplicaNumReq req) {
-        AutoDLResp<Object> resp = put("/api/v1/dev/deployment/replica_num", req,
+        AutoDLResp<Object> resp = put("/dev/deployment/replica_num", req,
+                new ParameterizedTypeReference<>() {
+                });
+        return resp.getData();
+    }
+
+    /**
+     * 删除部署
+     */
+    public Object deleteDeployment(DeploymentDeleteReq req) {
+        AutoDLResp<Object> resp = delete("/dev/deployment", req,
                 new ParameterizedTypeReference<>() {
                 });
         return resp.getData();

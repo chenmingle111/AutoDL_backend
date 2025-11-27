@@ -6,9 +6,7 @@ import com.autodl_backend.autodl.dto.*;
 import com.autodl_backend.autodl.dto.container.ContainerEventsReq;
 import com.autodl_backend.autodl.dto.container.ContainerListReq;
 import com.autodl_backend.autodl.dto.container.ContainerStopReq;
-import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
-import com.autodl_backend.autodl.dto.deployment.CreateDeploymentReq;
-import com.autodl_backend.autodl.dto.deployment.DeploymentListReq;
+import com.autodl_backend.autodl.dto.deployment.*;
 import com.autodl_backend.autodl.dto.image.PrivateImageListReq;
 import com.autodl_backend.autodl.dto.machines.GpuStockReq;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -173,7 +173,7 @@ public class AutoDLClientTest {
         // 创建容器模板
         var containerTemplate = com.autodl_backend.autodl.dto.deployment.ContainerTemplate.builder()
                 .dcList(java.util.Arrays.asList("westDC2", "westDC3"))
-                .gpuNameSet(java.util.Arrays.asList("RTX 4090"))
+                .gpuNameSet(List.of("RTX 4090"))
                 .cudaVFrom(113)
                 .cudaVTo(128)
                 .gpuNum(1)
@@ -229,6 +229,33 @@ public class AutoDLClientTest {
         } catch (Exception e) {
             // 在实际测试中可能需要根据API文档设置正确的参数
             fail("获取私有镜像列表测试失败: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void testSetReplicaNum() {
+        ReplicaNumReq req = new ReplicaNumReq();
+        // 设置必要的请求参数
+        req.setDeploymentUuid("42fa05848a");
+        req.setReplicaNum(10);
+
+        try {
+            autoDLClient.setReplicaNum(req);
+        } catch (Exception e) {
+            fail("设置副本数量测试失败: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void testDeleteDeployment() {
+        DeploymentDeleteReq req = new DeploymentDeleteReq();
+        // 设置必要的请求参数
+        req.setDeploymentUuid("42fa05848a");
+
+        try {
+            autoDLClient.deleteDeployment(req);
+        } catch (Exception e) {
+            fail("删除部署测试失败: " + e.getMessage());
         }
     }
 }
