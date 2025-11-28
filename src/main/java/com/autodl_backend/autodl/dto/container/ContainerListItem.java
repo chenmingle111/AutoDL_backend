@@ -38,7 +38,7 @@ public class ContainerListItem {
     private Integer cpuNum;
 
     @JsonProperty("memory_size")
-    private Integer memorySize;
+    private Long memorySize;
 
     @JsonProperty("image_uuid")
     private String imageUuid;

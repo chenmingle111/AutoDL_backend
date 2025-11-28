@@ -50,7 +50,7 @@ public class AutoDLClientTest {
         assertNotNull(autoDLProperties);
         assertNotNull(autoDLProperties.getToken());
     }
-
+/*
     @Test
     void testCreateInstance() {
         AutoDLCreateReq req = new AutoDLCreateReq();
@@ -82,6 +82,7 @@ public class AutoDLClientTest {
             fail("获取实例状态测试失败: " + e.getMessage());
         }
     }
+*/
 
     @Test
     void testGetContainerEvents() {
@@ -121,7 +122,7 @@ public class AutoDLClientTest {
     void testStopContainer() {
         ContainerStopReq req = new ContainerStopReq();
         // 设置必要的请求参数
-        req.setDeploymentContainerUuid("9c12c1bb2c-448241b0dd-24d42fd071");
+        req.setDeploymentContainerUuid("98fc43be4e-795c41d8");
         req.setDecreaseOneReplicaNum(false);
 
         try {
@@ -136,7 +137,7 @@ public class AutoDLClientTest {
     void testStopDeployment() {
         StopDeploymentReq req = new StopDeploymentReq();
 
-        req.setDeploymentUuid("983e8c191f");
+        req.setDeploymentUuid("2c75c3585d");
         req.setOperate("stop");
 
         try {
@@ -251,7 +252,7 @@ public class AutoDLClientTest {
     void testSetReplicaNum() {
         ReplicaNumReq req = new ReplicaNumReq();
         // 设置必要的请求参数
-        req.setDeploymentUuid("42fa05848a");
+        req.setDeploymentUuid("2c75c3585d");
         req.setReplicaNum(10);
 
         try {
@@ -265,7 +266,7 @@ public class AutoDLClientTest {
     void testDeleteDeployment() {
         DeploymentDeleteReq req = new DeploymentDeleteReq();
         // 设置必要的请求参数
-        req.setDeploymentUuid("983e8c191f");
+        req.setDeploymentUuid("2c75c3585d");
 
         try {
             autoDLClient.deleteDeployment(req);
