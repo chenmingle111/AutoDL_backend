@@ -30,6 +30,7 @@ public class ApiResponse<T> {
         return new ApiResponse<>(code, msg, null);
     }
 
+    //具体业务方法
     /**
      * 参数错误
      */
@@ -49,6 +50,13 @@ public class ApiResponse<T> {
      */
     public static <T> ApiResponse<T> notFound(String msg) {
         return error(ResponseCode.NOT_FOUND, msg);
+    }
+
+    /**
+     * 余额不足
+     */
+    public static <T> ApiResponse<T> insufficientBalance(String msg) {
+        return error(ResponseCode.INSUFFICIENT_BALANCE, msg);
     }
 
     /**
