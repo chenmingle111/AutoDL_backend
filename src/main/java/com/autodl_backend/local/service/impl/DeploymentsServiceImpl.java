@@ -20,6 +20,16 @@ public class DeploymentsServiceImpl extends ServiceImpl<DeploymentsMapper, Deplo
 
     @Override
     public CreateDeploymentData createDeployment(CreateDeploymentReq req) {
+
+        //镜像uuid为空
+        if(req.getContainerTemplate().getImageUuid() == null || req.getContainerTemplate().getImageUuid().equals("")){
+            throw new RuntimeException("imageUuid为空");
+        }
+        //镜像不存在
+//        if(response != null  &&
+//                response.getMessage().contains("私有镜像不存在")){
+//
+//        }
         return autoDLClient.createDeployment(req);
     }
 

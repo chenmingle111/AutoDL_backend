@@ -41,3 +41,6 @@ AutoDL
         当前所有用户都用的时学长的token访问autodl，但autodl并未提供创建token的api
 4.日志输出不完全，有的有日志，有的没有，要统一，如何规范？
 5.回显(getById)相关方法
+6.将对象转换为JSON字符串序列化流给前端：
+    目前采取AOP直接控制并且返回响应：response.getWriter().write()
+    存在两种自动化返回的方式：Spring MVC的@RestController和ResponseEntity，或@ControllerAdvice和ResponseBodyAdvice

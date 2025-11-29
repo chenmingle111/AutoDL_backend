@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ImageStatus {
     CREATING("creating"),
+    READY("ready"),
     FINISHED("finished"),
     ERROR("error");
 
