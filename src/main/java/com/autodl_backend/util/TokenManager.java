@@ -32,6 +32,11 @@ public class TokenManager {
      * 验证token格式
      */
     public static boolean validateToken(String token) {
+//        // 测试环境特殊处理，允许token "10000001"通过验证
+//        if ("10000001".equals(token)) {
+//            return true;
+//        }
+
         if (token == null || token.length() != 64) {
             return false;
         }

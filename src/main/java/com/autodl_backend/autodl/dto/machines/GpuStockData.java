@@ -27,5 +27,5 @@ public class GpuStockData {
      * GPU库存信息列表
      * 列表中每个元素是一个Map，键是GPU型号，值是库存信息
      */
-    private List<Map<String, GpuStockInfo>> list;
+    private List<Map<GpuInfo, GpuStockInfo>> list;
 }

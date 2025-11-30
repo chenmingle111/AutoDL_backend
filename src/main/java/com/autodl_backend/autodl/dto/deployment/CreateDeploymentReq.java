@@ -1,5 +1,6 @@
 package com.autodl_backend.autodl.dto.deployment;
 
+import com.autodl_backend.local.pojo.enums.DeploymentType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,7 @@ public class CreateDeploymentReq {
     private String name;
 
     @JsonProperty(value = "deployment_type",required = true)
-    private String deploymentType;
+    private DeploymentType deploymentType;
 
     @JsonProperty(value = "replica_num",required = true)
     private Integer replicaNum;

@@ -10,9 +10,7 @@ import com.autodl_backend.autodl.dto.container.ContainerEventData;
 import com.autodl_backend.autodl.dto.deployment.*;
 import com.autodl_backend.autodl.dto.image.PrivateImageListData;
 import com.autodl_backend.autodl.dto.image.PrivateImageListReq;
-import com.autodl_backend.autodl.dto.machines.GpuStockData;
-import com.autodl_backend.autodl.dto.machines.GpuStockInfo;
-import com.autodl_backend.autodl.dto.machines.GpuStockReq;
+import com.autodl_backend.autodl.dto.machines.*;
 import com.autodl_backend.autodl.exception.AutoDLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -217,7 +215,7 @@ public class AutoDLClient {
     /**
      * 设置调度黑名单
      */
-    public Object setBlacklist(BlacklistReq req) {
+    public Object setBlacklist(SetBlacklistReq req) {
         AutoDLResp<Object> resp = post("/dev/deployment/blacklist", req,
                 new ParameterizedTypeReference<>() {
                 });
@@ -229,7 +227,7 @@ public class AutoDLClient {
      */
     public GpuStockData getGpuStock(GpuStockReq req) {
         // 直接接收数组格式的响应
-        AutoDLResp<List<Map<String, GpuStockInfo>>> resp = post("/dev/machine/region/gpu_stock", req,
+        AutoDLResp<List<Map<GpuInfo, GpuStockInfo>>> resp = post("/dev/machine/region/gpu_stock", req,
                 new ParameterizedTypeReference<>() {
                 });
         // 将数组转换为GpuStockData对象

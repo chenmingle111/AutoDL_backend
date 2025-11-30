@@ -2,13 +2,14 @@
 package com.autodl_backend.autodl.client;
 
 import com.autodl_backend.autodl.config.AutoDLProperties;
-import com.autodl_backend.autodl.dto.*;
 import com.autodl_backend.autodl.dto.container.ContainerEventsReq;
 import com.autodl_backend.autodl.dto.container.ContainerListReq;
 import com.autodl_backend.autodl.dto.container.ContainerStopReq;
 import com.autodl_backend.autodl.dto.deployment.*;
 import com.autodl_backend.autodl.dto.image.PrivateImageListReq;
 import com.autodl_backend.autodl.dto.machines.GpuStockReq;
+import com.autodl_backend.autodl.dto.machines.SetBlacklistReq;
+import com.autodl_backend.local.pojo.enums.DeploymentType;
 import lombok.extern.slf4j.Slf4j;
 import lombok.var;
 import org.junit.jupiter.api.BeforeEach;
@@ -150,7 +151,7 @@ public class AutoDLClientTest {
 
     @Test
     void testSetBlacklist() {
-        BlacklistReq req = new BlacklistReq();
+        SetBlacklistReq req = new SetBlacklistReq();
         // 设置必要的请求参数
         req.setDeploymentContainerUuid("9c12c1bb2c-bd79408a8f-53ce5214f4-8404088b5");
         req.setComment("测试黑名单设置");
@@ -182,7 +183,7 @@ public class AutoDLClientTest {
         CreateDeploymentReq req = new CreateDeploymentReq();
         // 设置必要的请求参数
         req.setName("api自动创建");
-        req.setDeploymentType("ReplicaSet");
+        req.setDeploymentType(DeploymentType.REPLICA_SET);
         req.setReplicaNum(2);
         req.setReuseContainer(true);
         

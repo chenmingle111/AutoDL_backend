@@ -6,8 +6,8 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-@TableName("scheduling_blacklist")
-public class SchedulingBlacklist {
+@TableName("blacklist")
+public class Blacklist {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
@@ -24,8 +24,8 @@ public class SchedulingBlacklist {
     @TableField("comment")
     private String comment; // 拉黑原因
 
-    @TableField("expires_at")
-    private LocalDateTime expiresAt; // 过期时间
+    @TableField("expire_in_minutes")
+    private Integer expireInMinutes; // 过期时间
 
     @TableField(value = "created_at", fill = FieldFill.INSERT)
     private LocalDateTime createdAt;

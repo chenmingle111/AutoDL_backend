@@ -1,6 +1,6 @@
 package com.autodl_backend.local.controller;
 
-import com.autodl_backend.autodl.dto.deployment.BlacklistReq;
+import com.autodl_backend.autodl.dto.machines.SetBlacklistReq;
 import com.autodl_backend.autodl.dto.machines.GpuStockData;
 import com.autodl_backend.autodl.dto.machines.GpuStockReq;
 import com.autodl_backend.local.pojo.response.ApiResponse;
@@ -29,7 +29,7 @@ public class ManagementController {
      * @return Result indicating success.
      */
     @PostMapping("/blacklist")
-    public ApiResponse<Object> setBlacklist(@RequestBody BlacklistReq req) {
+    public ApiResponse<Object> setBlacklist(@RequestBody SetBlacklistReq req) {
         managementService.setBlacklist(req);
         return ApiResponse.success();
     }

@@ -1,4 +1,4 @@
-package com.autodl_backend.autodl.dto.deployment;
+package com.autodl_backend.autodl.dto.machines;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BlacklistReq {
+public class SetBlacklistReq {
     @JsonProperty(value = "deployment_container_uuid",required = true)
     private String deploymentContainerUuid;
 
