@@ -201,7 +201,7 @@ public class AutoDLClientTest {
                 .cmd("sleep 100")
                 .priceFrom(100)
                 .priceTo(9000)
-                .imageUuid("image")
+                .imageUuid("image-400a8d0583")
                 .build();
         
         req.setContainerTemplate(containerTemplate);

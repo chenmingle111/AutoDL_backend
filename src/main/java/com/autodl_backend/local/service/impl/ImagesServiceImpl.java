@@ -8,6 +8,7 @@ import com.autodl_backend.local.mapper.ImagesMapper;
 import com.autodl_backend.local.pojo.entity.Images;
 import com.autodl_backend.local.service.ImagesService;
 import com.autodl_backend.util.AutodlFataConverter.ImageConverter;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,6 @@ public class ImagesServiceImpl extends ServiceImpl<ImagesMapper, Images> impleme
     @Autowired
     private AutoDLClient autoDLClient;
 
-    @Autowired
-    private ImagesMapper imagesMapper;
 
     @Override
     public PrivateImageListData getPrivateImages(PrivateImageListReq req) {
@@ -45,9 +44,18 @@ public class ImagesServiceImpl extends ServiceImpl<ImagesMapper, Images> impleme
         // 如果获取到数据，将其转换为Images实体并保存到数据库
         if (privateImageList != null && privateImageList.getList() != null) {
             for (PrivateImageItem privateImageItem : privateImageList.getList()) {
-                //循环获取列表的所有镜像，一个个存进数据库
-                Images image = ImageConverter.convertToImage(privateImageItem, uid);
-                imagesMapper.insert(image);
+                // 先查询是否已存在该imageUuid的记录
+                Images existingImage = getOne(
+                        new QueryWrapper<Images>()
+                                .eq("image_uuid", privateImageItem.getImageUuid())
+                );
+
+                if (existingImage == null) {
+                    // 不存在，则转换并保存
+                    Images image = ImageConverter.convertToImage(privateImageItem, uid);
+                    save(image);
+                }
+                // 已存在则跳过，不做任何操作
             }
         }
 

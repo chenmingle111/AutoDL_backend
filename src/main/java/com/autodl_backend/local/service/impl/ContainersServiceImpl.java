@@ -1,15 +1,13 @@
 package com.autodl_backend.local.service.impl;
 
 import com.autodl_backend.autodl.client.AutoDLClient;
-import com.autodl_backend.autodl.dto.container.ContainerEventData;
-import com.autodl_backend.autodl.dto.container.ContainerEventsReq;
-import com.autodl_backend.autodl.dto.container.ContainerListData;
-import com.autodl_backend.autodl.dto.container.ContainerListReq;
-import com.autodl_backend.autodl.dto.container.ContainerStopReq;
+import com.autodl_backend.autodl.dto.container.*;
 import com.autodl_backend.local.mapper.ContainersMapper;
 import com.autodl_backend.local.pojo.entity.Containers;
+import com.autodl_backend.local.pojo.entity.Deployments;
 import com.autodl_backend.local.service.ContainerService;
 import com.autodl_backend.util.AutodlFataConverter.ContainerConverter;
+import com.autodl_backend.util.AutodlFataConverter.DeploymentConverter;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -40,32 +38,34 @@ public class ContainersServiceImpl extends ServiceImpl<ContainersMapper, Contain
         }
         String uid = (String) request.getAttribute("uid");
 
-        // 验证容器是否正确
+        // 验证部署是否正确
         if (req.getDeploymentUuid() == null || req.getDeploymentUuid().isEmpty()) {
             throw new RuntimeException("deploymentUuid为空");
-        }
-        //验证部署是否正确
-        //获取现有容器
-        Containers currentContainers = getOne(
-                new QueryWrapper<Containers>()
-                        .eq("container_uuid", req.getDeploymentContainerUuid())
-        );
-        if (currentContainers == null) {
-            throw new RuntimeException("容器不存在");
         }
 
 
         // 将请求转换为部署实体
-        Containers container = ContainerConverter.convertToContainer(req, uid);
+        Containers container = ContainerConverter.convertToContainer(req);
 
         // 调用AutoDL客户端获取容器列表
         ContainerEventData containerEvents = autoDLClient.getContainerEvents(req);
 
         // 如果获取到数据，将其转换为Containers实体并保存到数据库
         if (containerEvents != null && containerEvents.getList() != null) {
-            // 使用转换器将容器列表转换为实体列表
-            Containers containers = ContainerConverter.convertToContainer(containerEvents, container);
-            save(containers);
+            for (ContainerEventItem containerEventItem : containerEvents.getList()) {
+                // 先查询是否已存在该deploymentUuid的记录
+                Containers existingContainer = getOne(
+                        new QueryWrapper<Containers>()
+                                .eq("container_uuid",containerEventItem.getDeploymentContainerUuid())
+                );
+
+                if (existingContainer == null) {
+                    // 不存在，则转换并保存
+                    // 使用转换器将容器列表转换为实体列表
+                    Containers containers = ContainerConverter.convertToContainer(containerEvents, container);
+                    save(containers);
+                }
+            }
         }
 
         // 记录用户操作日志
@@ -90,30 +90,34 @@ public class ContainersServiceImpl extends ServiceImpl<ContainersMapper, Contain
             throw new RuntimeException("deploymentUuid为空");
         }
 
-        // 获取现有容器
-        Containers currentContainers = getOne(
-                new QueryWrapper<Containers>()
-                        .eq("container_uuid", req.getContainerUuid())
-        );
-        if (currentContainers == null) {
-            throw new RuntimeException("容器不存在");
-        }
 
         // 记录用户操作日志
         log.info("用户[{}]正在获取部署[{}]的容器列表", uid, req.getDeploymentUuid());
 
         // 将请求转换为部署实体
-        Containers container = ContainerConverter.convertToContainer(req, uid);
+        Containers container = ContainerConverter.convertToContainer(req);
 
         // 调用AutoDL客户端获取容器列表
         ContainerListData containerList = autoDLClient.getContainerList(req);
 
         // 如果获取到数据，将其转换为Containers实体并保存到数据库
         if (containerList != null && containerList.getList() != null) {
-            // 使用转换器将容器列表转换为实体列表
-            Containers containers = ContainerConverter.convertToContainer(containerList, container);
-            save(containers);
+            for (ContainerListItem containerListItem : containerList.getList()) {
+                // 先查询是否已存在该deploymentUuid的记录
+                Containers existingContainer = getOne(
+                        new QueryWrapper<Containers>()
+                                .eq("container_uuid",containerListItem.getUuid())
+                );
+
+                if (existingContainer == null) {
+                    // 不存在，则转换并保存
+                    // 使用转换器将容器列表转换为实体列表
+                    Containers containers = ContainerConverter.convertToContainer(containerList, container);
+                    save(containers);
+                }
+            }
         }
+
 
         // 记录日志
         log.info("用户[{}]成功获取部署[{}]的容器列表，共[{}]个容器",

@@ -150,7 +150,7 @@ public class DeploymentsServiceImpl extends ServiceImpl<DeploymentsMapper, Deplo
         if (attributes != null) {
             request = attributes.getRequest();
         }
-        Integer uid = (Integer) request.getAttribute("uid");
+        String uid = (String) request.getAttribute("uid");
 
         // 调用AutoDL客户端停止部署
         Object response = autoDLClient.stopDeployment(req);
@@ -160,7 +160,7 @@ public class DeploymentsServiceImpl extends ServiceImpl<DeploymentsMapper, Deplo
             Deployments deployment = getOne(
                 new com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<Deployments>()
                     .eq("deployment_uuid", req.getDeploymentUuid())
-                    .eq("uid", uid.toString())
+                    .eq("uid", uid)
             );
 
             if (deployment != null) {
@@ -180,8 +180,11 @@ public class DeploymentsServiceImpl extends ServiceImpl<DeploymentsMapper, Deplo
     public Object setReplicas(ReplicaNumReq req) {
         // 从请求中获取uid
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-        Integer uid = (Integer) request.getAttribute("uid");
+        HttpServletRequest request = null;
+        if (attributes != null) {
+            request = attributes.getRequest();
+        }
+        String uid = (String) request.getAttribute("uid");
 
         // 调用AutoDL客户端设置副本数
         Object response = autoDLClient.setReplicaNum(req);
@@ -191,7 +194,7 @@ public class DeploymentsServiceImpl extends ServiceImpl<DeploymentsMapper, Deplo
             Deployments deployment = getOne(
                 new com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<Deployments>()
                     .eq("deployment_uuid", req.getDeploymentUuid())
-                    .eq("uid", uid.toString())
+                    .eq("uid", uid)
             );
 
             if (deployment != null) {

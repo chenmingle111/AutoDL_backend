@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * AutoDL部署数据转换工具类
@@ -162,7 +161,6 @@ public class DeploymentConverter {
      * @param deployment 现有部署对象
      * @param item AutoDL返回的部署项
      * @param uid 用户ID
-     * @return 更新后的Deployments实体
      */
     public static void updateDeployment(Deployments deployment, DeploymentItem item, String uid) {
         // 保留原有ID和其他不需要更新的字段

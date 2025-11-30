@@ -181,21 +181,17 @@ public class LocalControllerIntegrationTest {
                 .andReturn();
 
         String responseString = result.getResponse().getContentAsString();
+        log.info("Container list response: {}", responseString); // 添加完整响应日志
         JsonNode rootNode = objectMapper.readTree(responseString);
         JsonNode listNode = rootNode.path("data").path("list");
         if (listNode.isArray() && !listNode.isEmpty()) {
-            // Find a container uuid. The field name might be 'instance_uuid' or 'uuid'
-            // depending on DTO
-            // Let's check the DTO or assume a common name.
-            // Looking at ContainerController, it returns ContainerListData.
-            // I'll assume the field is 'uuid' or 'instance_uuid'.
-            // Based on typical AutoDL API, it might be 'uuid'.
-            // Let's try to get 'uuid' or 'instance_uuid'.
+            log.info("Container list size: {}", listNode.size()); // 添加列表大小日志
             JsonNode firstContainer = listNode.get(0);
+            log.info("First container fields: {}", firstContainer.toString()); // 添加容器字段日志
             if (firstContainer.has("uuid")) {
                 deploymentContainerUuid = firstContainer.get("uuid").asText();
-            } else if (firstContainer.has("instance_uuid")) {
-                deploymentContainerUuid = firstContainer.get("instance_uuid").asText();
+            } else if (firstContainer.has("container_uuid")) {
+                deploymentContainerUuid = firstContainer.get("container_uuid").asText();
             }
             log.info("Found deploymentContainerUuid: {}", deploymentContainerUuid);
         } else {

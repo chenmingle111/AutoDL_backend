@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ContainerStatus {
     CREATING("creating"),
+    STARTING("starting"),
     RUNNING("running"),
     SHUTDOWN("shutdown"),
     ERROR("error");

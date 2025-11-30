@@ -1,5 +1,6 @@
 package com.autodl_backend.autodl.dto.container;
 
+import com.autodl_backend.local.pojo.enums.ContainerStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class ContainerListItem {
     @JsonProperty("deployment_uuid")
     private String deploymentUuid;
 
-    private String status;
+    private ContainerStatus status;
 
     @JsonProperty("gpu_name")
     private String gpuName;

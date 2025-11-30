@@ -3,6 +3,7 @@ package com.autodl_backend.util.AutodlFataConverter;
 import com.autodl_backend.autodl.dto.image.PrivateImageItem;
 import com.autodl_backend.local.pojo.entity.Images;
 import com.autodl_backend.local.pojo.enums.ImageStatus;
+import com.autodl_backend.util.DateTimeHelper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 @Slf4j
 public class ImageConverter {
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 将PrivateImageItem转换为Images实体
@@ -46,7 +46,7 @@ public class ImageConverter {
         // 转换时间
         if (item.getCreatedAt() != null) {
             try {
-                image.setCreatedAt(LocalDateTime.parse(item.getCreatedAt(), DATE_FORMATTER));
+                image.setCreatedAt(DateTimeHelper.parseDateTime(item.getCreatedAt()));
             } catch (Exception e) {
                 log.warn("Failed to parse created_at: {}", item.getCreatedAt());
                 image.setCreatedAt(LocalDateTime.now());
@@ -55,7 +55,7 @@ public class ImageConverter {
 
         if (item.getUpdatedAt() != null) {
             try {
-                image.setUpdatedAt(LocalDateTime.parse(item.getUpdatedAt(), DATE_FORMATTER));
+                image.setUpdatedAt(DateTimeHelper.parseDateTime(item.getUpdatedAt()));
             } catch (Exception e) {
                 log.warn("Failed to parse updated_at: {}", item.getUpdatedAt());
                 image.setUpdatedAt(LocalDateTime.now());
