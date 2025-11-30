@@ -14,7 +14,7 @@ public class OperationLogs {
     private Long id; // 大整数主键
 
     @TableField("uid")
-    private Integer uid; // 操作人ID
+    private String uid; // 操作人ID
 
     @TableField("operation_type")
     private String operationType; // 操作类型

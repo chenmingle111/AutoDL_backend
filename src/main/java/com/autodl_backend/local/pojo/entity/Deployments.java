@@ -20,7 +20,7 @@ public class Deployments {
     private Integer id; //部署id
 
     @TableField("uid")
-    private Integer uid; // 归属用户ID
+    private String uid; // 归属用户ID
 
     @TableField("deployment_uuid")
     private String deploymentUuid; // 部署唯一标识

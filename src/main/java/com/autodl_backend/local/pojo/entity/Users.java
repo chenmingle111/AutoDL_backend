@@ -14,7 +14,7 @@ public class Users {
     private Integer id;
 
     @TableField("uid")
-    private Integer uid; // 用户唯一标识
+    private String uid; // 用户唯一标识
 
     @TableField("user_name")
     private String userName; // 用户名

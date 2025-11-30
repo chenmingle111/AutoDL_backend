@@ -16,7 +16,7 @@ public class DeploymentItem {
     private Integer id;
 
     @JsonProperty("uid")
-    private Integer uid;
+    private String uid;
 
     @JsonProperty("uuid")
     private String uuid;

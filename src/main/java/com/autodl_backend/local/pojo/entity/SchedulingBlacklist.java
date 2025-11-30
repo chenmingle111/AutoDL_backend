@@ -13,7 +13,7 @@ public class SchedulingBlacklist {
     private Integer id;
 
     @TableField("uid")
-    private Integer uid; // 归属用户ID
+    private String uid; // 归属用户ID
 
     @TableField("machine_uuid")
     private String machineUuid; // 被拉黑主机UUID
