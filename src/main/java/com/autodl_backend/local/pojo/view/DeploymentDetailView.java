@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Data
 public class DeploymentDetailView {
     private Integer id;
-    private Integer uid;
+    private String uid;
     private String deploymentUuid;
     private String deploymentName;
     private String deploymentType;

@@ -14,7 +14,7 @@ public class BillingRecords {
     private Long id; // 大整数主键
 
     @TableField("uid")
-    private Integer uid; // 归属用户ID
+    private String uid; // 归属用户ID
 
     @TableField("container_uuid")
     private String containerUuid; // 关联容器UUID
